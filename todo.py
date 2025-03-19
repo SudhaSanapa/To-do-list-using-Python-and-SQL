@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
 
-# Connect to MySQL
 conn = mysql.connector.connect(
     host="localhost",
     user="root",  # Change this to your MySQL username
@@ -11,14 +10,13 @@ conn = mysql.connector.connect(
 )
 cursor = conn.cursor()
 
-# Function to fetch and display items
 def fetch_items():
     listbox.delete(0, tk.END)
     cursor.execute("SELECT id, task_name FROM tasks")
     for row in cursor.fetchall():
         listbox.insert(tk.END, f"{row[0]} - {row[1]}")  # Display ID and Task Name
 
-# Function to add a new item
+
 def add_item():
     task = entry.get()
     if task:
@@ -29,7 +27,7 @@ def add_item():
     else:
         messagebox.showwarning("Warning", "Please enter a task.")
 
-# Function to update a selected item
+
 def update_item():
     try:
         selected = listbox.get(listbox.curselection())
@@ -45,7 +43,7 @@ def update_item():
     except:
         messagebox.showerror("Error", "Please select a task to update.")
 
-# Function to delete a selected item
+
 def delete_item():
     try:
         selected = listbox.get(listbox.curselection())
@@ -56,7 +54,7 @@ def delete_item():
     except:
         messagebox.showerror("Error", "Please select a task to delete.")
 
-# Function to show all items in a messagebox
+
 def show_items():
     cursor.execute("SELECT task_name FROM tasks")
     items = cursor.fetchall()
@@ -65,16 +63,15 @@ def show_items():
     else:
         messagebox.showinfo("Task List", "The list is empty.")
 
-# GUI Setup
+
 root = tk.Tk()
 root.title("To-Do List Manager with MySQL")
 root.geometry("450x400")
 
-# Entry field
 entry = tk.Entry(root, font=("Arial", 12))
 entry.pack(pady=10)
 
-# Buttons
+
 btn_frame = tk.Frame(root)
 btn_frame.pack()
 
@@ -94,7 +91,7 @@ show_btn.pack(pady=5)
 listbox = tk.Listbox(root, font=("Arial", 12), width=40, height=10)
 listbox.pack(pady=10)
 
-# Load items on start
+
 fetch_items()
 
 # Run the application
