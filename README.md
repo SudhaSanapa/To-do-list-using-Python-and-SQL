@@ -40,7 +40,7 @@ Before running the application, set up your MySQL database:
 ## Installation and Usage
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/todo-list-mysql.git
+   git clone https://github.com/sudhasanapa/todo-list-mysql.git
    ```
 2. Navigate to the project directory:
    ```bash
